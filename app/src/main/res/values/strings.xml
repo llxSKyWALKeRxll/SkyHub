@@ -7,4 +7,21 @@
     <string name="navigation_drawer">SkyHub</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_dashboard">Dashboard fragment</string>
+    <string name="favourites_fragment">Favourites fragment</string>
+    <string name="profile_fragment">Profile fragment</string>
+    <string name="about_app_fragment">About App fragment</string>
+    <string name="home">Home</string>
+    <string name="home_activity">Home Activity</string>
+    <string name="vansh_pratap_singh">Vansh Pratap Singh</string>
+    <string name="marvelous_marvin_hagler">Marvelous Marvin Hagler</string>
+    <string name="background">Background</string>
+    <string name="marvinDesc">Marvelous Marvin Hagler (born Marvin Nathaniel Hagler; May 23, 1954 – March 13, 2021) was an American professional boxer and film actor who competed in boxing from 1973 to 1987. He reigned as undisputed champion of the middleweight division from 1980 to 1987, making twelve successful title defenses, all but one by knockout.
+        Hagler also holds the highest knockout percentage of all undisputed middleweight champions at 78 percent. His undisputed middleweight championship reign of six years and seven months is the longest active reign of the last century.</string>
+    <string name="boxing_career">Boxing Career</string>
+    <string name="boxing_desc">Hagler began his boxing career in Brockton, Massachusetts, winning 57 amateur fights and the 1973 Amateur Athletic Union middleweight title before turning professional. He won his first 26 professional bouts, which included 19 knockouts, but his streak was broken in late 1974 when he fought Sugar Ray Seales to a draw. After losing two matches in 1976 to middleweights Bobby Watts and Willie Monroe, Hagler remained unbeaten for another decade.
+A powerful left-hander, Hagler stood 5 feet 9 inches (1.75 metres) tall and weighed 160 pounds (72.6 kg). In his first title fight, in 1979, he boxed world middleweight champion Vito Antuofermo to a 15-round draw. On September 27, 1980, in his 54th professional fight, Hagler took the world title from Alan Minter with a third-round knockout. Hagler went on to defend the title 12 times from 1981 through 1986.
+    Fifty-two of Hagler’s 62 career wins were by knockout; he had three losses and two draws. He was inducted into the International Boxing Hall of Fame in 1993.</string>
 </resources>
