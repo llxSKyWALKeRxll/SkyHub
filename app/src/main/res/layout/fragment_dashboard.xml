@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardFragment"
-    android:background="#cfd8dc">
+    android:background="#cfd8dc"
+    tools:context=".fragment.DashboardFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -12,7 +12,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10sp"
-        android:text="@string/text_dashboard"
-        android:textSize="18sp" />
+        android:text="Some of my favorite fighters of all time"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtDashboard"
+        android:layout_margin="5dp"
+        android:padding="10dp" />
 
 </RelativeLayout>
