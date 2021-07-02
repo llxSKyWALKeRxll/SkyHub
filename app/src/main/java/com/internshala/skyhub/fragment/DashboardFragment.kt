@@ -1,15 +1,20 @@
 package com.internshala.skyhub.fragment
 
+import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toolbar
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.internshala.skyhub.R
 import com.internshala.skyhub.adapter.DashboardRecyclerAdapter
 import com.internshala.skyhub.model.Boxer
+import com.internshala.skyhub.utils.ConnectionManager
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +41,7 @@ class DashboardFragment : Fragment() {
 
     lateinit var recyclerDashboard: RecyclerView
     lateinit var layoutManager: RecyclerView.LayoutManager
+    lateinit var btnInternetCheck: Button
 
     val listItems1 = arrayListOf(
         "Marvelous Marvin Hagler",
@@ -83,6 +90,37 @@ class DashboardFragment : Fragment() {
         layoutManager = LinearLayoutManager(activity)
         recyclerAdapter = DashboardRecyclerAdapter(activity as Context, boxerInfoList)
 
+        btnInternetCheck = view.findViewById(R.id.btnInternetCheck)
+
+        btnInternetCheck.setOnClickListener {
+            if(ConnectionManager().checkConnectivity(activity as Context)) {
+                val dialog = AlertDialog.Builder(activity as Context)
+                dialog.setTitle("SUCCESS")
+                dialog.setMessage("Internet connection is established on this device!")
+                dialog.setPositiveButton("Ok"){text, listener ->
+
+                }
+                dialog.setNegativeButton("Cancel"){text, listener ->
+
+                }
+                dialog.create()
+                dialog.show()
+            }
+            else {
+                val dialog = AlertDialog.Builder(activity as Context)
+                dialog.setTitle("FAILURE")
+                dialog.setMessage("Internet connection is not established on this device!")
+                dialog.setPositiveButton("Ok"){text, listener ->
+
+                }
+                dialog.setNegativeButton("Cancel"){text, listener ->
+
+                }
+                dialog.create()
+                dialog.show()
+            }
+        }
+
         recyclerDashboard.adapter = recyclerAdapter
         recyclerDashboard.layoutManager = layoutManager
 
@@ -111,7 +149,7 @@ class DashboardFragment : Fragment() {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
-                }
             }
+        }
     }
 }

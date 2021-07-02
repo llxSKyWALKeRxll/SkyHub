@@ -24,4 +24,15 @@
         android:layout_margin="5dp"
         android:padding="10dp" />
 
+    <Button
+        android:id="@+id/btnInternetCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="CHECK FOR INTERNET CONNECTION"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#76ff03"/>
+
 </RelativeLayout>

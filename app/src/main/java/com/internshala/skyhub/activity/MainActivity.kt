@@ -1,5 +1,7 @@
 package com.internshala.skyhub.activity
 
+import android.app.AlertDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -112,6 +114,18 @@ class MainActivity : AppCompatActivity() {
         val fragmentScreen = supportFragmentManager.findFragmentById(R.id.frameLayout)
 
         when(fragmentScreen) {
+            is DashboardFragment -> {
+                val dialog = AlertDialog.Builder(this@MainActivity)
+                dialog.setTitle("Confirmation")
+                dialog.setMessage("Exit the app?")
+                dialog.setPositiveButton("Yes"){text, listener ->
+                    finish()
+                }
+                dialog.setNegativeButton("No"){text, listener ->
+                }
+                dialog.create()
+                dialog.show()
+            }
             !is DashboardFragment -> openDashboard()
             else -> finish()
         }
