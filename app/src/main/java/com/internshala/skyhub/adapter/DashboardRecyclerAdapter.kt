@@ -4,13 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.internshala.skyhub.R
 import com.internshala.skyhub.model.Boxer
+import com.squareup.picasso.Picasso
 
 class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Boxer>): RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>() {
 
@@ -21,7 +19,7 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Box
         val txtRLyears1: TextView = view.findViewById(R.id.txtRLyears1)
         val txtRLrating1: TextView = view.findViewById(R.id.txtRLrating1)
 
-        val rlContent: RelativeLayout = view.findViewById(R.id.rlContent)
+        val rlContent: LinearLayout = view.findViewById(R.id.rlContent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder {
@@ -31,11 +29,12 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Box
 
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         val boxer = itemList[position]
-        holder.imgRowLayout1.setImageResource(boxer.boxerImage)
+        //holder.imgRowLayout1.setImageResource(boxer.boxerImage)
         holder.txtRLname1.text = boxer.boxerName
         holder.txtRLrecord1.text = boxer.boxerRecord
         holder.txtRLyears1.text = boxer.yearsActive
         holder.txtRLrating1.text = boxer.rating
+        Picasso.get().load(boxer.boxerImage).error(R.drawable.default_book_cover).into(holder.imgRowLayout1)
 
         holder.rlContent.setOnClickListener {
             Toast.makeText(context, "Clicked on ${holder.txtRLname1.text}", Toast.LENGTH_SHORT).show()

@@ -6,33 +6,26 @@
     android:background="#cfd8dc"
     tools:context=".fragment.DashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/txtDashboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10sp"
-        android:text="Some of my favorite fighters of all time"
-        android:textSize="18sp"
-        android:textColor="@color/black"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtDashboard"
         android:layout_margin="5dp"
         android:padding="10dp" />
 
-    <Button
-        android:id="@+id/btnInternetCheck"
+    <RelativeLayout
+        android:id="@+id/rlProgressLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="CHECK FOR INTERNET CONNECTION"
-        android:padding="10dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:backgroundTint="#76ff03"/>
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
