@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
 
+
         navigationView.setNavigationItemSelectedListener {
 
             if(previousMenuItem != null) {
@@ -65,6 +66,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.itmDashboard -> {
                     openDashboard()
                     drawerLayout.closeDrawers()
+                    it.isCheckable = true
+                    it.isChecked = true
                 }
                 R.id.itmFavourites -> {
                     supportFragmentManager.beginTransaction().replace(R.id.frameLayout, FavouritesFragment()).commit()
@@ -91,7 +94,7 @@ class MainActivity : AppCompatActivity() {
 //            .addToBackStack("Dashboard").commit()
         supportFragmentManager.beginTransaction().replace(R.id.frameLayout, DashboardFragment()).commit()
         supportActionBar?.title = "Dashboard"
-//        navigationView.setCheckedItem(R.id.itmDashboard)
+        navigationView.setCheckedItem(R.id.itmDashboard)
     }
 
     fun setupToolbar() {
