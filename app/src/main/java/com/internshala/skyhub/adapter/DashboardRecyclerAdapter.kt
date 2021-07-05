@@ -1,12 +1,15 @@
 package com.internshala.skyhub.adapter
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.internshala.skyhub.R
+import com.internshala.skyhub.activity.DescriptionActivity
 import com.internshala.skyhub.model.Boxer
 import com.squareup.picasso.Picasso
 
@@ -37,7 +40,10 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Box
         Picasso.get().load(boxer.boxerImage).error(R.drawable.default_book_cover).into(holder.imgRowLayout1)
 
         holder.rlContent.setOnClickListener {
-            Toast.makeText(context, "Clicked on ${holder.txtRLname1.text}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(context as Activity, DescriptionActivity::class.java)
+            intent.putExtra("bookId", boxer.boxerId)
+            context.startActivity(intent)
+//            Toast.makeText(context as Activity, "Clicked on id: ${boxer.boxerId}", Toast.LENGTH_LONG).show()
         }
     }
 

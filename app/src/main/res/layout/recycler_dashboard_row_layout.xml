@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/imgRowLayout1"
-            android:layout_width="130dp"
+            android:layout_width="100dp"
             android:layout_height="130dp"
             android:layout_marginVertical="5dp"
             android:layout_marginLeft="5dp"

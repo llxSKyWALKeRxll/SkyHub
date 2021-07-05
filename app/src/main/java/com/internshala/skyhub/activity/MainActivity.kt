@@ -87,10 +87,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openDashboard() {
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, DashboardFragment())
-            .addToBackStack("Dashboard").commit()
+//        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, DashboardFragment())
+//            .addToBackStack("Dashboard").commit()
+        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, DashboardFragment()).commit()
         supportActionBar?.title = "Dashboard"
-        navigationView.setCheckedItem(R.id.itmDashboard)
+//        navigationView.setCheckedItem(R.id.itmDashboard)
     }
 
     fun setupToolbar() {

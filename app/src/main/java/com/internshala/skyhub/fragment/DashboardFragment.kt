@@ -101,6 +101,7 @@ class DashboardFragment : Fragment() {
                     rlProgressLayout.visibility = View.GONE
                     val success = it.getBoolean("success")
                     if (success) {
+                        rlProgressLayout.visibility = View.GONE
                         val data = it.getJSONArray("data")
                         for (i in 0 until data.length()) {
                             val bookJsonObject = data.getJSONObject(i)
