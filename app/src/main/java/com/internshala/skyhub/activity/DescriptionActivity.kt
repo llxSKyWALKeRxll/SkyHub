@@ -158,11 +158,17 @@ class DescriptionActivity : AppCompatActivity() {
             android.R.id.home -> {
                 intent = Intent(this@DescriptionActivity, MainActivity::class.java)
                 startActivity(intent)
-                finish()
+                this.finish()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        intent = Intent(this@DescriptionActivity, MainActivity::class.java)
+        startActivity(intent)
+        this.finish()
     }
 
 }

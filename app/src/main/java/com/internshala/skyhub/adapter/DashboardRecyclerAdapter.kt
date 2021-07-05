@@ -43,6 +43,7 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Box
             val intent = Intent(context as Activity, DescriptionActivity::class.java)
             intent.putExtra("bookId", boxer.boxerId)
             context.startActivity(intent)
+            context.finish()
 //            Toast.makeText(context as Activity, "Clicked on id: ${boxer.boxerId}", Toast.LENGTH_LONG).show()
         }
     }
