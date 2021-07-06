@@ -1,21 +1,13 @@
 package com.internshala.skyhub.fragment
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
-import androidx.activity.OnBackPressedCallback
-import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -24,9 +16,12 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.internshala.skyhub.R
 import com.internshala.skyhub.adapter.DashboardRecyclerAdapter
-import com.internshala.skyhub.model.Boxer
+import com.internshala.skyhub.model.Book
 import com.internshala.skyhub.utils.ConnectionManager
 import java.lang.Exception
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.HashMap
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,19 +45,28 @@ class DashboardFragment : Fragment() {
 
     lateinit var recyclerAdapter: DashboardRecyclerAdapter
 
-    val boxerInfoList = arrayListOf<Boxer>()
+    val bookInfoList = arrayListOf<Book>()
 
-//    val boxerInfoList = arrayListOf<Boxer>(
-//        Boxer("Marvelous Marvin Hagler", "62(W)-3(L)-2(T)", "1973-1987", "5.0", R.drawable.marvin2),
-//        Boxer("Errol Spence Jr", "27(W)-0(L)-0(T)", "2012-present", "5.0", R.drawable.spence2),
-//        Boxer("Deontay Wilder", "42(W)-1(L)-1(T)", "2008-present", "5.0", R.drawable.wilder1),
-//        Boxer("Floyd Mayweather Jr", "50(W)-0(L)-0(T)", "1996-2017", "5.0", R.drawable.floyd1),
-//        Boxer("Terence Crawford", "37(W)-0(L)-0(T)", "2008-present", "5.0", R.drawable.crawford1),
-//        Boxer("Devin Haney", "26(W)-0(L)-0(T)", "2015-present", "5.0", R.drawable.devin1),
-//        Boxer("Tyson Fury", "30(W)-0(L)-1(T)", "2008-present", "5.0", R.drawable.fury1),
-//        Boxer("Canelo Alvarez", "56(W)-1(L)-2(T)", "2005-present", "5.0", R.drawable.canelo1),
-//        Boxer("Anthony Joshua", "24(W)-1(L)-0(T)", "2013-present", "5.0", R.drawable.joshua1),
-//        Boxer("Gervonta Davis", "25W)-0(L)-0(T)", "2013-present", "5.0", R.drawable.davis1),
+    val ratingComparator = Comparator<Book> { book1, book2 ->
+        if(book1.bookRating.compareTo(book2.bookRating, true) == 0){
+            book1.bookName.compareTo(book2.bookName, true)
+        }
+        else {
+            book1.bookRating.compareTo(book2.bookRating, true)
+        }
+    }
+
+//    val boxerInfoList = arrayListOf<Book>(
+//        Book("Marvelous Marvin Hagler", "62(W)-3(L)-2(T)", "1973-1987", "5.0", R.drawable.marvin2),
+//        Book("Errol Spence Jr", "27(W)-0(L)-0(T)", "2012-present", "5.0", R.drawable.spence2),
+//        Book("Deontay Wilder", "42(W)-1(L)-1(T)", "2008-present", "5.0", R.drawable.wilder1),
+//        Book("Floyd Mayweather Jr", "50(W)-0(L)-0(T)", "1996-2017", "5.0", R.drawable.floyd1),
+//        Book("Terence Crawford", "37(W)-0(L)-0(T)", "2008-present", "5.0", R.drawable.crawford1),
+//        Book("Devin Haney", "26(W)-0(L)-0(T)", "2015-present", "5.0", R.drawable.devin1),
+//        Book("Tyson Fury", "30(W)-0(L)-1(T)", "2008-present", "5.0", R.drawable.fury1),
+//        Book("Canelo Alvarez", "56(W)-1(L)-2(T)", "2005-present", "5.0", R.drawable.canelo1),
+//        Book("Anthony Joshua", "24(W)-1(L)-0(T)", "2013-present", "5.0", R.drawable.joshua1),
+//        Book("Gervonta Davis", "25W)-0(L)-0(T)", "2013-present", "5.0", R.drawable.davis1),
 //    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,7 +109,7 @@ class DashboardFragment : Fragment() {
                         val data = it.getJSONArray("data")
                         for (i in 0 until data.length()) {
                             val bookJsonObject = data.getJSONObject(i)
-                            val bookObject = Boxer(
+                            val bookObject = Book(
                                 bookJsonObject.getString("book_id"),
                                 bookJsonObject.getString("name"),
                                 bookJsonObject.getString("author"),
@@ -113,10 +117,10 @@ class DashboardFragment : Fragment() {
                                 bookJsonObject.getString("rating"),
                                 bookJsonObject.getString("image")
                             )
-                            boxerInfoList.add(bookObject)
+                            bookInfoList.add(bookObject)
 
                             recyclerAdapter =
-                                DashboardRecyclerAdapter(activity as Context, boxerInfoList)
+                                DashboardRecyclerAdapter(activity as Context, bookInfoList)
                             recyclerDashboard.adapter = recyclerAdapter
                             recyclerDashboard.layoutManager = layoutManager
 
@@ -204,5 +208,18 @@ class DashboardFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater?.inflate(R.menu.menu_dashboard, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id = item?.itemId
+        if(id == R.id.sortMenu) {
+            Collections.sort(bookInfoList, ratingComparator)
+            bookInfoList.reverse()
+        }
+
+        recyclerAdapter.notifyDataSetChanged()
+
+        return super.onOptionsItemSelected(item)
     }
 }

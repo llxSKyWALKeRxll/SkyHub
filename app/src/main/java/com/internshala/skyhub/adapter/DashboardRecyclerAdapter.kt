@@ -10,10 +10,10 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.internshala.skyhub.R
 import com.internshala.skyhub.activity.DescriptionActivity
-import com.internshala.skyhub.model.Boxer
+import com.internshala.skyhub.model.Book
 import com.squareup.picasso.Picasso
 
-class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Boxer>): RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>() {
+class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Book>): RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>() {
 
     class DashboardViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val imgRowLayout1: ImageView = view.findViewById(R.id.imgRowLayout1)
@@ -33,15 +33,15 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Box
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         val boxer = itemList[position]
         //holder.imgRowLayout1.setImageResource(boxer.boxerImage)
-        holder.txtRLname1.text = boxer.boxerName
-        holder.txtRLrecord1.text = boxer.boxerRecord
-        holder.txtRLyears1.text = boxer.yearsActive
-        holder.txtRLrating1.text = boxer.rating
-        Picasso.get().load(boxer.boxerImage).error(R.drawable.default_book_cover).into(holder.imgRowLayout1)
+        holder.txtRLname1.text = boxer.bookName
+        holder.txtRLrecord1.text = boxer.bookAuthor
+        holder.txtRLyears1.text = boxer.bookPrice
+        holder.txtRLrating1.text = boxer.bookRating
+        Picasso.get().load(boxer.bookImage).error(R.drawable.default_book_cover).into(holder.imgRowLayout1)
 
         holder.rlContent.setOnClickListener {
             val intent = Intent(context as Activity, DescriptionActivity::class.java)
-            intent.putExtra("bookId", boxer.boxerId)
+            intent.putExtra("bookId", boxer.bookId)
             context.startActivity(intent)
             context.finish()
 //            Toast.makeText(context as Activity, "Clicked on id: ${boxer.boxerId}", Toast.LENGTH_LONG).show()
