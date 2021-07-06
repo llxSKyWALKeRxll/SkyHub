@@ -9,10 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
@@ -82,6 +80,8 @@ class DashboardFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
+        setHasOptionsMenu(true)
+
         recyclerDashboard = view.findViewById(R.id.recyclerDashboard)
         layoutManager = LinearLayoutManager(activity)
 
@@ -141,7 +141,13 @@ class DashboardFragment : Fragment() {
 
                 }, Response.ErrorListener {
 
-                    Toast.makeText(activity as Context, "Volley Library error encountered!", Toast.LENGTH_SHORT).show()
+                if(activity != null) {
+                    Toast.makeText(
+                        activity as Context,
+                        "Volley Library error encountered!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
                 }) {
 
@@ -194,5 +200,9 @@ class DashboardFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater?.inflate(R.menu.menu_dashboard, menu)
     }
 }
