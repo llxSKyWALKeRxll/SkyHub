@@ -31,17 +31,17 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Boo
     }
 
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
-        val boxer = itemList[position]
+        val book = itemList[position]
         //holder.imgRowLayout1.setImageResource(boxer.boxerImage)
-        holder.txtRLname1.text = boxer.bookName
-        holder.txtRLrecord1.text = boxer.bookAuthor
-        holder.txtRLyears1.text = boxer.bookPrice
-        holder.txtRLrating1.text = boxer.bookRating
-        Picasso.get().load(boxer.bookImage).error(R.drawable.default_book_cover).into(holder.imgRowLayout1)
+        holder.txtRLname1.text = book.bookName
+        holder.txtRLrecord1.text = book.bookAuthor
+        holder.txtRLyears1.text = book.bookPrice
+        holder.txtRLrating1.text = book.bookRating
+        Picasso.get().load(book.bookImage).error(R.drawable.default_book_cover).into(holder.imgRowLayout1)
 
         holder.rlContent.setOnClickListener {
             val intent = Intent(context as Activity, DescriptionActivity::class.java)
-            intent.putExtra("bookId", boxer.bookId)
+            intent.putExtra("bookId", book.bookId)
             context.startActivity(intent)
             context.finish()
 //            Toast.makeText(context as Activity, "Clicked on id: ${boxer.boxerId}", Toast.LENGTH_LONG).show()

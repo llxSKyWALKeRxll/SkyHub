@@ -7,13 +7,40 @@
     android:background="#f0f4c3">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ImageView
+        android:id="@+id/aboutChonker"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/standing_chonker"/>
+
+    <RelativeLayout
         android:id="@+id/txtAboutApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:padding="10sp"
-        android:text="@string/about_app_fragment"
-        android:textSize="18sp" />
+        android:layout_below="@+id/aboutChonker"
+        android:background="#ffccbc"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="
+Hello there! My name is Vansh. \n
+I am currently working on an android application as a part of the training course 'Android Application Development', which is conducted by Internshala.\n
+So far, I am finding android app development to be quite easy, understandable and fun as most of the concepts being used here are the concepts that I have already studied before in Java and HTML.\n
+The web development course and project that I did recently is really helping me out here as Kotlin &amp; Java and XML &amp; HTML go hand in hand.\n
+I am really excited to build a useful and productive application from the knowledge that I will have after the completion of this course.\n
+I have now learnt about so many different features and libraries and I shall be making use of all of them to build this application.\n
+This is my second application on Android."
+            android:padding="20dp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

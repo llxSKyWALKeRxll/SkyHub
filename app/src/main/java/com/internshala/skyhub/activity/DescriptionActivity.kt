@@ -1,5 +1,6 @@
 package com.internshala.skyhub.activity
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -69,7 +70,10 @@ class DescriptionActivity : AppCompatActivity() {
         descProgressBar.visibility = View.VISIBLE
 
         if(intent != null) {
+            println("intent is $intent")
+            println("taking id")
             book_id = intent.getStringExtra("bookId")
+            println("taking id as ${intent.getStringExtra("bookId")}")
         }
         else {
             finish()
@@ -112,7 +116,7 @@ class DescriptionActivity : AppCompatActivity() {
                             descRating.text = bookJsonObject.getString("rating")
                             mainDescription.text = bookJsonObject.getString("description")
 
-                            val bookEntity = BookEntity(
+                            var bookEntity = BookEntity(
                                 book_id?.toInt() as Int,
                                 descName.text.toString(),
                                 descAuthor.text.toString(),
@@ -291,5 +295,4 @@ class DescriptionActivity : AppCompatActivity() {
         }
 
     }
-
 }
